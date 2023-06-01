@@ -12,5 +12,6 @@
         <a href = "{% url 'detail' post.id %}">{{post.title}}</a>
         </br>
     {% endfor %}
+    <a href =" {% url 'create_post' %}"><button>글쓰기</button></a>
 </body>
 </html>

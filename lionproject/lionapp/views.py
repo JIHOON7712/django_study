@@ -34,3 +34,31 @@ def create_post(request):
     else:
         return render(request,'create_post.html')
 
+def modify_post(request,pk):
+    post = Post.objects.get(pk=pk)
+
+    # POST 요청이 들어오면
+    if request.method == 'POST':   
+        post.title = request.POST.get('title') 
+        post.content = request.POST.get('content') 
+        post.save()
+        return redirect('detail' , pk=post.pk)
+    # GET 요청이 들어오면
+    else:
+        context = {"post" : post}
+        return render(request,'modify_post.html',context = context)
+    
+def delete_post(request, pk):
+    post = Post.objects.get(id=pk)
+    post.delete()
+    posts = Post.objects.all()
+    context = {"posts" : posts}
+    return render(request,'home.html',context = context)
+
+def delete_comment(request, comment_pk):
+    
+    comment = Comment.objects.get(id=comment_pk)
+    post = comment.post
+    comment.delete()
+    pk = post.id
+    return redirect('detail',pk=pk)

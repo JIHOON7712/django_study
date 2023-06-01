@@ -24,4 +24,7 @@ urlpatterns = [
     path('',views.home,name = 'home'),
     path('detail/<int:pk>/',views.detail,name = 'detail'),
     path('create_post/',views.create_post,name = 'create_post'),
+    path('modify_post/<int:pk>/',views.modify_post,name = 'modify_post'),
+    path('delete_post/<int:pk>/',views.delete_post,name = 'delete_post'),
+    path('delete_comment/<int:comment_pk>/',views.delete_comment,name = 'delete_comment'),
 ]

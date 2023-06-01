@@ -9,17 +9,28 @@
 <body>
     <h1>Lion App Post</h1>
     <h2>{{post.title}}</h2>
-    <p>{{post.content}}</p>
+    <h2>{{post.content}}</h2>
     {% for comment in comment %}
         <p>{{comment.content}}</p>
+        <a href="{% url 'delete_comment' comment.id  %}"><button>삭제</button></a>
     {% endfor %}
+
+
 
     <form action = "{% url 'detail' post.id %}" method = "POST">
         {% csrf_token %}
-        <label for = "content"> Content </label>
+        <label for = "content"> Comment </label>
         <input type = "text" name = "content" id = "content" >
 
         <input type = "submit" value = "Create">
     </form>
+
+    <div>
+        <a href="{% url 'modify_post' post.id  %}"><button>수정</button></a>
+    </div>
+    <div>
+        <a href="{% url 'delete_post' post.id  %}"><button>삭제</button></a>
+    </div>
+
 </body>
 </html>
